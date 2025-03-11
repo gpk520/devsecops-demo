@@ -10,8 +10,7 @@ pipeline {
             steps {
                 git branch: 'main', url: 'https://github.com/gpk520/devsecops-demo.git'
             }
-         stages {
-        
+        }
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image...'
@@ -40,15 +39,6 @@ pipeline {
                 echo 'Pushing Docker image to registry...'
                 sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
             }
-        }
-    }
-
-    post {
-        success {
-            echo '✅ Pipeline completed successfully!'
-        }
-        failure {
-            echo '❌ Pipeline failed!'
         }
     }
 }
