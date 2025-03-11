@@ -15,7 +15,7 @@ pipeline {
             steps {
                 echo 'Building Docker image...'
                 sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ." 
-                sh "docker login -u "gpk800" -p "gpk520@_GPK" docker.io"
+                sh "echo 'gpk520@_GPK' | docker login -u 'gpk800' --password-stdin"
                 sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
             }
         }
