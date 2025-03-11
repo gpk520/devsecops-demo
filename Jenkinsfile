@@ -41,4 +41,12 @@ withDockerRegistry(credentialsId: 'docker_login', url: 'https://index.docker.io/
             }
         }
     }
+    post {
+        success {
+            echo '✅ Docker image pushed successfully!'
+        }
+        failure {
+            echo '❌ Pipeline failed! Check login & permissions.'
+        }
+    }
 }
