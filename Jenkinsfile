@@ -4,7 +4,6 @@ pipeline {
         IMAGE_NAME = 'gpk800/your-image-name'
         IMAGE_TAG = 'latest'  // Use `BUILD_NUMBER` for unique tags
         REGISTRY = 'https://index.docker.io/v1/'  // Change for AWS ECR or GCR
-                DOCKERFILE_PATH = 'pro1/devsecops-demo'  // Path to your Dockerfile
     }
     stages {
         stage('Checkout Code') {
@@ -16,7 +15,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image...'
-                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -f ${DOCKERFILE_PATH} ." 
+                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ." 
             }
         }
 
