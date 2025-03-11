@@ -27,12 +27,12 @@ pipeline {
 
         stage('Login to Docker Registry') {
             steps {
-                echo 'Logging in to Docker Hub...'
-                withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-                sh 'docker Login -u gpk800 -p ${dockerhubpwd}'
+                // This step should not normally be used in your script. Consult the inline help for details.
+withDockerRegistry(credentialsId: 'docker_login', url: 'https://index.docker.io/v1/') {
+    // some block
+}
                 }
             }
-        }
 
         stage('Push Docker Image') {
             steps {
