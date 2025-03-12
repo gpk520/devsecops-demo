@@ -1,5 +1,21 @@
 pipeline {
-    agent any
+     agent {
+        kubernetes {
+            yaml """
+            apiVersion: v1
+            kind: Pod
+            metadata:
+              labels:
+                some-label: jenkins-agent
+            spec:
+              containers:
+              - name: build-container
+                image: maven:3.8.6-openjdk-11
+                command: ['cat']
+                tty: true
+            """
+        }
+    }
     environment {
         IMAGE_NAME = 'gpk800/your-image-name'
         IMAGE_TAG = 'latest'  // Use `BUILD_NUMBER` for unique tags
