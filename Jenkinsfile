@@ -44,7 +44,6 @@ pipeline {
             }
         }
 
-    }
     post {
         success {
             echo '✅ Docker image pushed successfully!'
