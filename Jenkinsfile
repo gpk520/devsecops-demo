@@ -22,7 +22,6 @@ pipeline {
         stage('Connect to kubernetes') {
             steps {
                 kubeconfig(credentialsId: 'k8-connect', serverUrl: '') {
-                sh "kubectl apply -f kubernetes/deployment.yaml"
 }
                
 }
