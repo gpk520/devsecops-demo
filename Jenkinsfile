@@ -28,6 +28,7 @@ pipeline {
                 kubectl version --client
                 '''
             }
+         }
         stage('Connect to kubernetes') {
             steps {
                  kubeconfig(caCertificate: '''MIIDBTCCAe2gAwIBAgIIYPQbOrUIdacwDQYJKoZIhvcNAQELBQAwFTETMBEGA1UE
@@ -54,7 +55,6 @@ UuWmhYTGxYL2epVRxtMxfOU1TQY2lPkWCD5ytiNk8JmvUMO6KXgs0OZIZdplDIIK
 }
             }
         
-    }
     post {
         success {
             echo '✅ Docker image pushed successfully!'
