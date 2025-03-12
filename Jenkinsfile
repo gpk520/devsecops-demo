@@ -21,8 +21,10 @@ pipeline {
         }
         stage('Connect to kubernetes') {
             steps {
-                kubeconfig(caCertificate: '', credentialsId: 'k8-cred', serverUrl: 'https://127.0.0.1:41911') {
+                kubeconfig(credentialsId: 'k8-connect', serverUrl: '') {
                 sh "kubectl apply -f kubernetes/deployment.yaml"
+}
+               
 }
             }
         }
