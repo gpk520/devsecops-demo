@@ -4,6 +4,7 @@ pipeline {
         IMAGE_NAME = 'gpk800/your-image-name'
         IMAGE_TAG = 'latest'  // Use `BUILD_NUMBER` for unique tags
         REGISTRY = 'https://index.docker.io/v1/'  // Change for AWS ECR or GCR
+        PATH = "$WORKSPACE/bin:$PATH"
     }
     stages {
         stage('Checkout Code') {
@@ -19,16 +20,17 @@ pipeline {
                 sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
             }
         }
-         stage('Install kubectl') {
+          stage('Install kubectl') {
             steps {
                 sh '''
+                mkdir -p $WORKSPACE/bin
                 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
                 chmod +x kubectl
-                sudo mv kubectl /usr/local/bin/
+                mv kubectl $WORKSPACE/bin/
                 kubectl version --client
                 '''
             }
-         }
+        }
         stage('Connect to kubernetes') {
             steps {
                  kubeconfig(caCertificate: '''MIIDBTCCAe2gAwIBAgIIYPQbOrUIdacwDQYJKoZIhvcNAQELBQAwFTETMBEGA1UE
