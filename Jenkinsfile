@@ -21,11 +21,24 @@ pipeline {
         }
         stage('Connect to kubernetes') {
             steps {
-                 
-                 sh "kubectl config view --raw"
-                 sh "export KUBECONFIG=/path/to/your/kubeconfig"
-                 kubeconfig(credentialsId: 'k8-connect', serverUrl: 'https://127.0.0.1:41911') {
-          
+                 kubeconfig(caCertificate: '''MIIDBTCCAe2gAwIBAgIIYPQbOrUIdacwDQYJKoZIhvcNAQELBQAwFTETMBEGA1UE
+AxMKa3ViZXJuZXRlczAeFw0yNTAzMDgxNzQ0MTFaFw0zNTAzMDYxNzQ5MTFaMBUx
+EzARBgNVBAMTCmt1YmVybmV0ZXMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+AoIBAQCipsADMbpEOODcRCZa1EwYshZ1xY1uluA9M8IoZ1K5to2tiK1Y/S7cxHzN
+WcgQnIZfzWOZYSvQvqHg2e4tSFJiJyIvmEreRJ3fMUKhFQvJ1N1rmMC8SK5F0y3I
+01f+0JHJkMRCMhJEW4W1ESPNCuFp0BVf8oh1CmqK9VC+ORIiDUFTNYdM8UT6Y03o
+/sPOWLs5LgIy+bxSKwO1xAm578an97Uj8A6t5BtKtB7fVA8liA9zbUsfVNfDSNiv
+r2b9CX92svXT/1TzWjJ423HnXfPl1IUzSEXWijxhD2cZ8wh7tuD7GcwIqFhz0Cst
+ajREe0RccxPnnDc9e60QLOjUxGNVAgMBAAGjWTBXMA4GA1UdDwEB/wQEAwICpDAP
+BgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBRb9j4RupAmcQpf6PrVErgG46ABXDAV
+BgNVHREEDjAMggprdWJlcm5ldGVzMA0GCSqGSIb3DQEBCwUAA4IBAQBP+OoW1Z3R
+VYs5/+YwvpK1WHSGh/tVBm9JYjoVLnNpyiyIQJHfbL48RAhEFc/4M/EF0NtUotH0
+PSrzxhAXDb37iNot2REg/PDLUSd+qNg7S/WxzbZfxL6NVrgKlAfwIIa+UeD61RON
+7Sh7KzlgMH1v0osy0r7Ki78pmjYnFIlOBI3+DfDOdOjKpv0dgTHtj6omGfAFl4o0
+3dkNDF2jj+ehyh6dZD7TU2vhFhfEo0V3t08QjKyPh/XYGfGWxfi5/vebRbDPBoYf
+UuWmhYTGxYL2epVRxtMxfOU1TQY2lPkWCD5ytiNk8JmvUMO6KXgs0OZIZdplDIIK
+8mCevWyMDB33''', credentialsId: 'k8-connect', serverUrl: 'https://127.0.0.1:41911') {
+    // some block
 }
 }
                
