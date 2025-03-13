@@ -21,16 +21,14 @@ pipeline {
                 sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
             }
         }
- stage('Check Cluster Info') {
+ stage('connecting to kubernetes') {
             steps {
-                kubernetesCli(configName: 'kubectl', command: 'cluster-info')
+                withKubeConfig(caCertificate: '', clusterName: 'kind-gpk800', contextName: 'kind-gpk800', credentialsId: 'k8-cred', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://127.0.0.1:35071') {
+    // some block
+}
             }
         }
-        stage('Get Pods') {
-            steps {
-                kubernetesCli(configName: 'kubectl', command: 'get pods -A')
-            }
-        }
+        
                
 }
      
