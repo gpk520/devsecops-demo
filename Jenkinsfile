@@ -22,7 +22,7 @@ pipeline {
  stage('connecting to kubernetes') {
             steps {
               withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8-cred', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://127.0.0.1:35071') {
-               sh "kubectl apply -f deployment.yml"
+                sh "kubectl apply -f kubernetes/deployment.yaml"
 }
 }
             }
