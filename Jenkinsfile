@@ -4,8 +4,6 @@ pipeline {
         IMAGE_NAME = 'gpk800/your-image-name'
         IMAGE_TAG = 'latest'  // Use `BUILD_NUMBER` for unique tags
         REGISTRY = 'https://index.docker.io/v1/'  // Change for AWS ECR or GCR
-        PATH = "$WORKSPACE/bin:$PATH"
-         KUBECONFIG = credentials('k8-connect')
     }
     stages {
         stage('Checkout Code') {
@@ -24,14 +22,13 @@ pipeline {
  stage('connecting to kubernetes') {
             steps {
               withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8-cred', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://127.0.0.1:35071') {
-           sh "kubectl apply -f deployment.yml"
+               sh "kubectl apply -f deployment.yml"
 }
 }
             }
         }
         
                
-}
      
         
     post {
