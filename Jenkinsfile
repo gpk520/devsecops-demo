@@ -23,7 +23,6 @@ pipeline {
             steps {
               withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8-cred', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://127.0.0.1:35071') {
                    sh "kubectl apply -f kubernetes/deployment.yaml"
-                   sh "kubectl get pods -n webapps"
           
 }
 }
